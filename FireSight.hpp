@@ -224,6 +224,7 @@ namespace firesight {
       bool apply_circle(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_convertTo(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_cout(json_t *pStage, json_t *pStageModel, Model &model);
+      bool apply_crop(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_cvtColor(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_dft(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_dftSpectrum(json_t *pStage, json_t *pStageModel, Model &model);
@@ -243,6 +244,8 @@ namespace firesight {
       bool apply_imwrite(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_log(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_Mat(json_t *pStage, json_t *pStageModel, Model &model);
+      bool apply_matchGrid(json_t *pStage, json_t *pStageModel, Model &model);
+      bool apply_meanStdDev(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_minAreaRect(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_model(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_morph(json_t *pStage, json_t *pStageModel, Model &model);
@@ -256,12 +259,15 @@ namespace firesight {
       bool apply_threshold(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_warpRing(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_SimpleBlobDetector(json_t *pStage, json_t *pStageModel, Model &model);
+      bool apply_sharpness(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_split(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_stageImage(json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_transparent(json_t *pStage, json_t *pStageModel, Model &model);
+      bool apply_undistort(const char *pName, json_t *pStage, json_t *pStageModel, Model &model);
       bool apply_warpAffine(json_t *pStage, json_t *pStageModel, Model &model);
+      bool apply_warpPerspective(const char *pName, json_t *pStage, json_t *pStageModel, Model &model);
 
-      const char * dispatch(const char *pOp, json_t *pStage, json_t *pStageModel, Model &model);
+      const char * dispatch(const char *pName, const char *pOp, json_t *pStage, json_t *pStageModel, Model &model);
       void detectKeypoints(json_t *pStageModel, vector<vector<Point> > &regions);
       void detectRects(json_t *pStageModel, vector<vector<Point> > &regions);
       int parseCvType(const char *typeName, const char *&errMsg);

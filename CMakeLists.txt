@@ -3,9 +3,10 @@ cmake_minimum_required(VERSION 2.8)
 project( firesight )
 
 SET(PROJECT_VERSION_MAJOR 0)
-SET(PROJECT_VERSION_MINOR 13)
-set(PROJECT_VERSION_PATCH 3)
+SET(PROJECT_VERSION_MINOR 15)
+set(PROJECT_VERSION_PATCH 0)
 set(PROJECT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
+
 
 OPTION(BUILD_LGPL2_1 "Build modules with LGPL2.1 license" OFF)
 
@@ -29,7 +30,7 @@ ELSE(WIN32)
   SET(JANSSON_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/jannson/src")
   SET(JANSSON_LIB "libjansson.so")
   SET(FIRESIGHT_LIB "lib_firesight.so")
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g -Wno-format-extra-args")
   SET(CMAKE_SHARED_LINKER_FLAGS_DEBUG "${CMAKE_SHARED_LINKER_FLAGS_DEBUG} -g")
 ENDIF(WIN32)
 
@@ -86,6 +87,7 @@ set(FIRESIGHT_LIB_FILES
   bgSub.cpp
   calcOffset.cpp
   calcHist.cpp
+  calibrate.cpp
   dft.cpp 
   FireLog.cpp 
   generated_code.cpp
@@ -101,6 +103,7 @@ set(FIRESIGHT_LIB_FILES
   Pipeline.cpp 
   Pt2Res_RANSAC.cpp
   proto.cpp 
+  Sharpness.cpp
   warpRing.cpp
   )
 
@@ -161,6 +164,7 @@ if(WIN32)
 endif(WIN32)
 
 add_executable(test 
+  test/test_calibrate.cpp
   test/test_warpAffine.cpp 
   test/test_warpRing.cpp 
   test/test_regionKeypoint.cpp 
